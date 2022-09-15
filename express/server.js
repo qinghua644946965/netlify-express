@@ -6,15 +6,10 @@ const path = require('path');
 const serverless = require('serverless-http');
 const app = express();
 app.use(cors())
-const bodyParser = require('body-parser');
-
-	
-app.use(bodyParser.json({ strict: false }));
 
 app.get('/', (req, res) => {
   res.send('Serverless Node.js Express!')
 });
-
 app.get('/weather/:city', (req, res) => {
   const city = req.params.city;
   console.log("req.params.city",city);
