@@ -8,11 +8,14 @@ const app = express();
 app.use(cors())
 const bodyParser = require('body-parser');
 
-const router = express.Router();
-router.get('/', (req, res) => {
+	
+app.use(bodyParser.json({ strict: false }));
+
+app.get('/', (req, res) => {
   res.send('Serverless Node.js Express!')
 });
-router.get('/weather/:city', (req, res) => {
+
+app.get('/weather/:city', (req, res) => {
   const city = req.params.city;
   console.log("req.params.city",city);
   if(city){
@@ -30,12 +33,6 @@ router.get('/weather/:city', (req, res) => {
     res.send("未设置参数city");
   }
 });
-router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
-router.post('/', (req, res) => res.json({ postBody: req.body }));
-
-app.use(bodyParser.json());
-app.use('/.netlify/functions/server', router);  // path must route to lambda
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
 module.exports = app;
 module.exports.handler = serverless(app);
