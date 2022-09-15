@@ -7,10 +7,12 @@ const serverless = require('serverless-http');
 const app = express();
 app.use(cors())
 
-app.get('/', (req, res) => {
+const router = express.Router();
+
+router.get('/', (req, res) => {
   res.send('Serverless Node.js Express!')
 });
-app.get('/weather/:city', (req, res) => {
+router.get('/weather/:city', (req, res) => {
   const city = req.params.city;
   console.log("req.params.city",city);
   if(city){
