@@ -12,6 +12,9 @@ const router = express.Router();
 router.get('/', (req, res) => {
   res.send('Serverless  Express!')
 });
+router.get('/about', (req, res) => {
+  res.send('About birds')
+})
 router.get('/weather/:city', (req, res) => {
   const city = req.params.city;
   console.log("req.params.city",city);
