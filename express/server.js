@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 
 const router = express.Router();
 router.get('/', (req, res) => {
-    const city = req.query.city;
+    const city = req.params.city;
     console.log("city",city);
     if(city){
       console.log("encodeURI city",encodeURIComponent(city));
