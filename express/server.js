@@ -6,6 +6,7 @@ var request = require("request");
 const app = express();
 app.use(cors())
 const bodyParser = require('body-parser');
+var ds={};
 
 const router = express.Router();
 router.get('/', (req, res) => {
@@ -15,12 +16,11 @@ router.get('/', (req, res) => {
 });
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.post('/', (req, res) => res.json({ postBody: req.body }));
-router.get('/set', (req, res) => {
-    var params = req.params;
-    console.log("req.params",params);
-    Object.keys(params).map(key=>{
-        ds[key] = params.key
-    });
+router.get('/set/:key/:value', (req, res) => {
+    var key = req.params.key;
+    var value = req.params.value;
+    console.log("req.params",req.params);
+    ds[key]=value;
 });
 
 router.get('/get/:key', (req, res) => {
