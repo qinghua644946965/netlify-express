@@ -22,12 +22,12 @@ router.get('/set/:key/:value', (req, res) => {
     var value = req.params.value;
     console.log("req.params",req.params);
     ds[key]=value;
+    res.send("设置成功！");
 });
 
 router.get('/get/:key', (req, res) => {
     var key = req.params.key;
-    res.write(ds[key]);
-    res.end();
+    res.send(ds[key]);
 });
 
 app.use(bodyParser.json());
